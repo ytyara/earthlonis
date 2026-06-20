@@ -1,0 +1,9 @@
+# Site is still being filled with content — block all crawling for now.
+# Once ~50 places are published and ready, replace this with:
+#
+# User-agent: *
+# Disallow:
+# Sitemap: https://yourdomain.com/sitemap.xml
+
+User-agent: *
+Disallow: /
