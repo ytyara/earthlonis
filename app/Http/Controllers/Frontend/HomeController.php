@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\Place;
 use App\Models\Category;
-use App\Models\Comment;
 
 class HomeController extends Controller
 {
@@ -46,7 +45,6 @@ class HomeController extends Controller
         $placesCount        = Place::where('is_published', true)->count();
         $countriesCount     = $countries->count();
         $categoriesCount    = $categories->count();
-        $commentsCount      = Comment::where('is_approved', true)->count();
 
         return view('frontend.home', compact(
             'countries',
@@ -56,8 +54,7 @@ class HomeController extends Controller
             'categories',
             'placesCount',
             'countriesCount',
-            'categoriesCount',
-            'commentsCount'
+            'categoriesCount'
         ));
     }
 

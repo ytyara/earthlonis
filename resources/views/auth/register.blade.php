@@ -27,7 +27,7 @@
         </div>
 
         <div class="d-flex align-items-center justify-content-between">
-            <a class="text-decoration-none small" style="color:#4a6a80;" href="{{ route('login') }}">
+            <a class="text-decoration-none small text-secondary" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 

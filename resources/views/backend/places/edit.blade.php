@@ -44,8 +44,7 @@
         <div class="tab-pane fade show active" id="tab-main">
 
             {{-- STATUS --}}
-            <div class="mb-4 p-3 rounded" id="status-box"
-                 style="background:{{ $place->is_published ? '#d1f2dd' : '#f1f3f5' }};">
+            <div class="mb-4 p-3 rounded {{ $place->is_published ? 'bg-success-subtle' : 'bg-secondary-subtle' }}" id="status-box">
                 <div class="form-check form-switch mb-0">
                     <input class="form-check-input"
                            type="checkbox"
@@ -54,9 +53,9 @@
                            name="is_published"
                            value="1"
                            {{ old('is_published', $place->is_published) ? 'checked' : '' }}>
-                    <label class="form-check-label fw-500" for="is_published" id="status-label">
+                    <label class="form-check-label fw-medium" for="is_published" id="status-label">
                         {{ $place->is_published ? 'Published' : 'Draft' }}
-                        <span class="text-muted" style="font-size:12px;">— visible on the public site only when published</span>
+                        <span class="text-muted fs-7">— visible on the public site only when published</span>
                     </label>
                 </div>
             </div>
@@ -121,7 +120,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Tagline
-                    <span class="text-muted" style="font-size:12px;">(short one-line hook shown under the title, e.g. "The highest peak in Ukraine")</span>
+                    <span class="text-muted fs-7">(short one-line hook shown under the title, e.g. "The highest peak in Ukraine")</span>
                 </label>
                 <input type="text"
                        name="tagline"
@@ -132,7 +131,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Know Before You Go
-                    <span class="text-muted" style="font-size:12px;">(practical tips, e.g. "How to get there" / "Take the cable car from..." )</span>
+                    <span class="text-muted fs-7">(practical tips, e.g. "How to get there" / "Take the cable car from..." )</span>
                 </label>
 
                 <div id="kbyg-rows">
@@ -163,7 +162,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Quick Facts
-                    <span class="text-muted" style="font-size:12px;">(shown as a table under the gallery, e.g. "Height" / "2061 m")</span>
+                    <span class="text-muted fs-7">(shown as a table under the gallery, e.g. "Height" / "2061 m")</span>
                 </label>
 
                 <div id="quick-facts-rows">
@@ -202,7 +201,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Sources
-                    <span class="text-muted" style="font-size:12px;">(links to where this information was sourced from)</span>
+                    <span class="text-muted fs-7">(links to where this information was sourced from)</span>
                 </label>
 
                 <div id="source-rows">
@@ -244,15 +243,14 @@
                     <label class="form-label">Current Hero Image</label>
                     <div>
                         <img src="{{ asset('storage/'.$place->image) }}"
-                             class="rounded border"
-                             style="max-width: 200px;">
+                             class="rounded border mw-thumb-preview">
                     </div>
                 </div>
             @endif
 
             <div class="mb-4">
                 <label class="form-label">Change Hero Image
-                    <span class="text-muted" style="font-size:12px;">(max 2MB)</span>
+                    <span class="text-muted fs-7">(max 2MB)</span>
                 </label>
                 <input type="file"
                        name="image"
@@ -269,8 +267,7 @@
                     <div class="col-md-3 mb-3" id="image-{{ $image->id }}">
                         <div class="card">
                             <img src="{{ asset('storage/'.$image->image) }}"
-                                 class="card-img-top"
-                                 style="height: 150px; object-fit: cover;">
+                                 class="card-img-top img-h-150 object-fit-cover">
                             <div class="card-body text-center p-2">
                                 <button type="button"
                                         class="btn btn-sm btn-outline-danger delete-image"
@@ -317,7 +314,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Meta Title
-                    <span class="text-muted" style="font-size:12px;">(recommended: 50-60 chars)</span>
+                    <span class="text-muted fs-7">(recommended: 50-60 chars)</span>
                 </label>
                 <input type="text"
                        name="meta_title"
@@ -327,13 +324,13 @@
                        id="meta-title-input">
                 <div class="d-flex justify-content-between mt-1">
                     <div>@error('meta_title')<span class="text-danger small">{{ $message }}</span>@enderror</div>
-                    <small class="text-muted" id="meta-title-count">0 chars</small>
+                    <small id="meta-title-count">0 chars</small>
                 </div>
             </div>
 
             <div class="mb-4">
                 <label class="form-label">Meta Description
-                    <span class="text-muted" style="font-size:12px;">(recommended: 150-160 chars)</span>
+                    <span class="text-muted fs-7">(recommended: 150-160 chars)</span>
                 </label>
                 <textarea name="meta_description"
                           rows="3"
@@ -342,16 +339,16 @@
                           id="meta-desc-input">{{ old('meta_description', $place->meta_description) }}</textarea>
                 <div class="d-flex justify-content-between mt-1">
                     <div>@error('meta_description')<span class="text-danger small">{{ $message }}</span>@enderror</div>
-                    <small class="text-muted" id="meta-desc-count">0 chars</small>
+                    <small id="meta-desc-count">0 chars</small>
                 </div>
             </div>
 
             {{-- GOOGLE PREVIEW --}}
-            <div class="p-3 rounded" style="background:#f8f9fa; border:0.5px solid #dee2e6;">
-                <div class="mb-1" style="font-size:12px; color:#4a6a80;">Google preview</div>
-                <div id="preview-title" style="font-size:18px; color:#1a0dab;">{{ $place->meta_title ?: $place->title . ' — Earthlonis' }}</div>
-                <div style="font-size:13px; color:#006621;">travellevel.com/{{ $place->country->slug }}/{{ $place->slug }}</div>
-                <div id="preview-desc" style="font-size:13px; color:#545454;">{{ $place->meta_description ?: 'No description yet.' }}</div>
+            <div class="p-3 rounded bg-body-tertiary border">
+                <div class="mb-1 fs-7 text-secondary">Google preview</div>
+                <div id="preview-title" class="fs-5 text-serp-title">{{ $place->meta_title ?: $place->title . ' — Earthlonis' }}</div>
+                <div class="small text-serp-url">{{ parse_url(config('app.url'), PHP_URL_HOST) }}/{{ $place->country->slug }}/{{ $place->slug }}</div>
+                <div id="preview-desc" class="small text-serp-desc">{{ $place->meta_description ?: 'No description yet.' }}</div>
             </div>
 
             <div class="mt-4">
@@ -376,9 +373,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('is_published').addEventListener('change', function() {
         const box = document.getElementById('status-box');
         const label = document.getElementById('status-label');
-        box.style.background = this.checked ? '#d1f2dd' : '#f1f3f5';
+        box.classList.toggle('bg-success-subtle', this.checked);
+        box.classList.toggle('bg-secondary-subtle', !this.checked);
         label.innerHTML = (this.checked ? 'Published' : 'Draft')
-            + ' <span class="text-muted" style="font-size:12px;">— visible on the public site only when published</span>';
+            + ' <span class="text-muted fs-7">— visible on the public site only when published</span>';
     });
 
     // QUICK FACTS ROWS
@@ -467,11 +465,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const previewTitle = document.getElementById('preview-title');
     const previewDesc = document.getElementById('preview-desc');
 
+    function setCountColor(el, len, min, max) {
+        el.classList.remove('text-danger', 'text-success', 'text-secondary');
+        el.classList.add(len > max ? 'text-danger' : len >= min ? 'text-success' : 'text-secondary');
+    }
+
     function updateTitle() {
         const val = titleInput.value;
         const len = val.length;
         titleCount.textContent = len + ' chars';
-        titleCount.style.color = len > 60 ? '#dc3545' : len >= 50 ? '#198754' : '#6c757d';
+        setCountColor(titleCount, len, 50, 60);
         previewTitle.textContent = val || '{{ $place->title }} — Earthlonis';
     }
 
@@ -479,7 +482,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const val = descInput.value;
         const len = val.length;
         descCount.textContent = len + ' chars';
-        descCount.style.color = len > 160 ? '#dc3545' : len >= 150 ? '#198754' : '#6c757d';
+        setCountColor(descCount, len, 150, 160);
         previewDesc.textContent = val || 'No description yet.';
     }
 
@@ -525,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 galleryContainer.insertAdjacentHTML('beforeend', `
                     <div class="col-md-3 mb-3" id="image-${image.id}">
                         <div class="card">
-                            <img src="${image.url}" class="card-img-top" style="height:150px; object-fit:cover;">
+                            <img src="${image.url}" class="card-img-top img-h-150 object-fit-cover">
                             <div class="card-body text-center p-2">
                                 <button type="button" class="btn btn-sm btn-outline-danger delete-image"
                                         data-url="${image.delete_url}" data-id="${image.id}">Delete</button>

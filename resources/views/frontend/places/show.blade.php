@@ -49,10 +49,10 @@
 
 {{-- HERO IMAGE --}}
 @if($place->image)
-    <div style="height:320px; overflow:hidden; background:#dde8f0;">
+    <div class="thumb-xl overflow-hidden bg-placeholder">
         <img src="{{ asset('storage/'.$place->image) }}"
              alt="{{ $place->title }}"
-             style="width:100%; height:100%; object-fit:cover; display:block;">
+             class="w-100 h-100 object-fit-cover d-block">
     </div>
 @endif
 
@@ -60,10 +60,10 @@
 <div class="container py-5">
 
     {{-- BREADCRUMB --}}
-    <nav class="mb-4" style="font-size:13px; color:#4a6a80;">
-        <a href="{{ url('/') }}" class="text-decoration-none" style="color:#2176ae;">Home</a>
+    <nav class="mb-4 small text-secondary">
+        <a href="{{ url('/') }}" class="text-decoration-none text-primary">Home</a>
         <span class="mx-2">·</span>
-        <a href="{{ route('countries.show', $country) }}" class="text-decoration-none" style="color:#2176ae;">{{ $country->name }}</a>
+        <a href="{{ route('countries.show', $country) }}" class="text-decoration-none text-primary">{{ $country->name }}</a>
         <span class="mx-2">·</span>
         <span>{{ $place->title }}</span>
     </nav>
@@ -73,27 +73,27 @@
         {{-- MAIN --}}
         <div class="col-md-8">
 
-            <h1 class="mb-2" style="font-size:30px; font-weight:500; color:#0d2a3f;">
+            <h1 class="mb-2 fs-2 fw-medium text-dark">
                 {{ $place->title }}
             </h1>
 
             @if($place->tagline)
-                <p class="mb-3" style="font-size:16px; color:#4a6a80; line-height:1.6;">
+                <p class="mb-3 text-secondary lh-base">
                     {{ $place->tagline }}
                 </p>
             @endif
 
-            <div class="d-flex align-items-center gap-2 mb-2" style="font-size:13px; color:#4a6a80;">
+            <div class="d-flex align-items-center gap-2 mb-2 small text-secondary">
                 <a href="{{ route('countries.show', $country) }}"
-                   class="text-decoration-none" style="color:#4a6a80;">{{ $country->name }}</a>
+                   class="text-decoration-none text-secondary">{{ $country->name }}</a>
                 @if($place->category)
-                    <span style="width:3px; height:3px; border-radius:50%; background:#ccc; display:inline-block;"></span>
+                    <span class="dot-sep"></span>
                     <a href="{{ route('places.category', $place->category->slug) }}"
-                       class="text-decoration-none" style="color:#4a6a80;">{{ $place->category->name }}</a>
+                       class="text-decoration-none text-secondary">{{ $place->category->name }}</a>
                 @endif
             </div>
 
-            <div class="mb-4" style="font-size:12px; color:#9aa5b1;">
+            <div class="mb-4 fs-7 text-muted-soft">
                 Published {{ $place->created_at->format('M j, Y') }}
                 @if(abs($place->updated_at->diffInMinutes($place->created_at)) > 1)
                     · Updated {{ $place->updated_at->format('M j, Y') }}
@@ -108,10 +108,10 @@
                             <a href="{{ asset('storage/'.$img->image) }}"
                                class="glightbox"
                                data-gallery="place-gallery">
-                                <div style="height:140px; overflow:hidden; border-radius:8px; background:#dde8f0;">
+                                <div class="thumb-md overflow-hidden rounded-2 bg-placeholder">
                                     <img src="{{ asset('storage/'.$img->image) }}"
                                          alt=""
-                                         style="width:100%; height:100%; object-fit:cover; display:block;">
+                                         class="w-100 h-100 object-fit-cover d-block">
                                 </div>
                             </a>
                         </div>
@@ -123,11 +123,11 @@
             @if(!empty($place->know_before_you_go))
                 <div class="card border mb-4">
                     <div class="card-body">
-                        <h2 class="mb-3" style="font-size:16px; font-weight:500; color:#0d2a3f;">Know Before You Go</h2>
+                        <h2 class="mb-3 fs-6 fw-medium text-dark">Know Before You Go</h2>
                         @foreach($place->know_before_you_go as $tip)
-                            <div class="d-flex gap-2 mb-2" style="font-size:14px;">
-                                <span class="fw-500" style="color:#0d2a3f; min-width:140px;">{{ $tip['label'] }}</span>
-                                <span style="color:#1f2937;">{{ $tip['value'] }}</span>
+                            <div class="d-flex gap-2 mb-2 small">
+                                <span class="fw-medium text-dark mw-label">{{ $tip['label'] }}</span>
+                                <span>{{ $tip['value'] }}</span>
                             </div>
                         @endforeach
                     </div>
@@ -140,8 +140,8 @@
                     @foreach($place->quick_facts as $fact)
                         <div class="col-{{ max(2, intdiv(12, min(count($place->quick_facts), 4))) }}">
                             <div class="card border h-100 text-center p-3">
-                                <div class="fw-500" style="font-size:15px; color:#0d2a3f;">{{ $fact['value'] }}</div>
-                                <div class="text-muted text-uppercase mt-1" style="font-size:10px; letter-spacing:0.04em;">{{ $fact['label'] }}</div>
+                                <div class="fw-medium text-dark">{{ $fact['value'] }}</div>
+                                <div class="text-muted text-uppercase mt-1 fs-8 tracked">{{ $fact['label'] }}</div>
                             </div>
                         </div>
                     @endforeach
@@ -149,18 +149,18 @@
             @endif
 
             {{-- DESCRIPTION --}}
-            <div style="font-size:15px; line-height:1.8; color:#1f2937;">
+            <div class="lh-lg">
                 {!! $place->description !!}
             </div>
 
             {{-- SOURCES --}}
             @if(!empty($place->sources))
-                <div class="mt-4" style="font-size:13px; color:#4a6a80;">
-                    <div class="text-muted mb-1" style="font-size:12px; text-transform:uppercase; letter-spacing:0.04em;">Sources</div>
+                <div class="mt-4 small text-secondary">
+                    <div class="text-muted mb-1 fs-7 text-uppercase tracked">Sources</div>
                     <ol class="ps-3 mb-0">
                         @foreach($place->sources as $url)
                             <li class="mb-1">
-                                <a href="{{ $url }}" target="_blank" rel="noopener" class="text-decoration-none" style="color:#2176ae;">
+                                <a href="{{ $url }}" target="_blank" rel="noopener" class="text-decoration-none text-primary">
                                     {{ $url }}
                                 </a>
                             </li>
@@ -172,30 +172,30 @@
 {{-- COMMENTS --}}
 <hr class="my-5" id="comments">
 
-<h2 class="mb-4" style="font-size:19px; font-weight:500;">
+<h2 class="mb-4 fs-5 fw-medium">
     Comments
     @if($place->comments->count())
-        <span class="text-muted fw-400" style="font-size:15px;">({{ $place->comments->count() }})</span>
+        <span class="text-muted fw-normal">({{ $place->comments->count() }})</span>
     @endif
 </h2>
 
 {{-- SUCCESS MESSAGE --}}
 @if(session('success'))
-    <div class="alert alert-success mb-4" style="font-size:14px;">
+    <div class="alert alert-success mb-4 small">
         {{ session('success') }}
     </div>
 @endif
 
 {{-- COMMENT FORM --}}
 <div class="card border p-4 mb-5">
-    <h5 class="mb-3" style="font-size:16px; font-weight:500;">Leave a comment</h5>
+    <h5 class="mb-3 fs-6 fw-medium">Leave a comment</h5>
 
-    <div id="comment-success" class="alert alert-success mb-3" style="display:none; font-size:14px;"></div>
+    <div id="comment-success" class="alert alert-success mb-3 small d-none"></div>
 
     <form id="comment-form">
         @csrf
         <div class="mb-3">
-            <label class="form-label" style="font-size:13px;">Your name</label>
+            <label class="form-label small">Your name</label>
             <input type="text"
                    name="name"
                    id="comment-name"
@@ -204,7 +204,7 @@
             <div class="invalid-feedback" id="error-name"></div>
         </div>
         <div class="mb-3">
-            <label class="form-label" style="font-size:13px;">Comment</label>
+            <label class="form-label small">Comment</label>
             <textarea name="body"
                       id="comment-body"
                       rows="4"
@@ -212,7 +212,7 @@
                       placeholder="Share your experience..."></textarea>
             <div class="invalid-feedback" id="error-body"></div>
         </div>
-        <button type="submit" id="comment-submit" class="btn btn-sm px-4" style="background:#2176ae; color:white;">
+        <button type="submit" id="comment-submit" class="btn btn-primary btn-sm px-4">
             Submit
         </button>
     </form>
@@ -222,26 +222,24 @@
 @forelse($place->comments as $comment)
     <div class="mb-4" id="comment-{{ $comment->id }}">
         <div class="d-flex gap-3">
-            <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
-                 style="width:38px; height:38px; background:#eaf4fb; color:#2176ae; font-size:14px; font-weight:500;">
+            <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 avatar-md bg-light text-primary fw-medium">
                 {{ strtoupper(substr($comment->name, 0, 1)) }}
             </div>
             <div class="flex-grow-1">
                 <div class="d-flex align-items-baseline gap-2 mb-1">
-                    <span style="font-size:14px; font-weight:500; color:#0d2a3f;">{{ $comment->name }}</span>
-                    <span style="font-size:12px; color:#4a6a80;">{{ $comment->created_at->diffForHumans() }}</span>
+                    <span class="small fw-medium text-dark">{{ $comment->name }}</span>
+                    <span class="fs-7 text-secondary">{{ $comment->created_at->diffForHumans() }}</span>
                 </div>
-                <p style="font-size:14px; color:#1f2937; margin-bottom:8px;">{{ $comment->body }}</p>
-                    <button class="btn btn-link p-0 toggle-reply"
-                            style="font-size:12px; color:#2176ae; text-decoration:none;"
+                <p class="small mb-2">{{ $comment->body }}</p>
+                    <button class="btn btn-link p-0 toggle-reply fs-7 text-primary text-decoration-none"
                             data-parent-id="{{ $comment->id }}"
                             data-name="">
                         Reply
                     </button>
 
                 {{-- REPLY FORM --}}
-                <div class="reply-form mt-3" id="reply-form-{{ $comment->id }}" style="display:none;">
-                    <div id="reply-success-{{ $comment->id }}" class="alert alert-success mb-2" style="display:none; font-size:13px;"></div>
+                <div class="reply-form mt-3 d-none" id="reply-form-{{ $comment->id }}">
+                    <div id="reply-success-{{ $comment->id }}" class="alert alert-success mb-2 fs-7 d-none"></div>
                     <div class="mb-2">
                         <input type="text"
                             class="form-control form-control-sm reply-name"
@@ -252,16 +250,14 @@
                                 class="form-control form-control-sm reply-body"
                                 placeholder="Your reply..."></textarea>
                     </div>
-                    <button class="btn btn-sm px-3 send-reply"
-                            style="background:#2176ae; color:white; font-size:12px;"
+                    <button class="btn btn-primary btn-sm px-3 send-reply"
                             data-id="{{ $comment->id }}"
                             data-url="{{ route('comments.store', $place) }}"
                             data-parent="{{ $comment->id }}">
                         Send reply
                     </button>
                     <button type="button"
-                            class="btn btn-sm btn-link cancel-reply"
-                            style="font-size:12px; color:#4a6a80;"
+                            class="btn btn-sm btn-link cancel-reply fs-7 text-secondary"
                             data-id="{{ $comment->id }}">
                         Cancel
                     </button>
@@ -269,22 +265,20 @@
 
                 {{-- REPLIES --}}
                 @if($comment->replies->count())
-                    <div class="mt-3 ps-3" style="border-left: 2px solid #eaf4fb;">
+                    <div class="mt-3 ps-3 border-start border-2 border-light">
                         @foreach($comment->replies as $reply)
                             @if($reply->is_approved)
                                 <div class="d-flex gap-3 mb-3">
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
-                                        style="width:32px; height:32px; background:#eaf4fb; color:#2176ae; font-size:12px; font-weight:500;">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 avatar-sm bg-light text-primary fw-medium fs-7">
                                         {{ strtoupper(substr($reply->name, 0, 1)) }}
                                     </div>
                                     <div>
                                         <div class="d-flex align-items-baseline gap-2 mb-1">
-                                            <span style="font-size:13px; font-weight:500; color:#0d2a3f;">{{ $reply->name }}</span>
-                                            <span style="font-size:11px; color:#4a6a80;">{{ $reply->created_at->diffForHumans() }}</span>
+                                            <span class="fs-7 fw-medium text-dark">{{ $reply->name }}</span>
+                                            <span class="fs-8 text-secondary">{{ $reply->created_at->diffForHumans() }}</span>
                                         </div>
-                                        <p style="font-size:13px; color:#1f2937; margin-bottom:6px;">{{ $reply->body }}</p>
-                                        <button class="btn btn-link p-0 toggle-reply"
-                                                style="font-size:12px; color:#2176ae; text-decoration:none;"
+                                        <p class="fs-7 mb-2">{{ $reply->body }}</p>
+                                        <button class="btn btn-link p-0 toggle-reply fs-7 text-primary text-decoration-none"
                                                 data-parent-id="{{ $comment->id }}"
                                                 data-name="{{ $reply->name }}">
                                             Reply
@@ -299,72 +293,67 @@
             </div>
         </div>
     </div>
-    <hr style="border-color:#f0f4f8;">
+    <hr class="border-faint">
 @empty
-    <p class="text-muted" style="font-size:14px;">No comments yet. Be the first!</p>
+    <p class="text-muted small">No comments yet. Be the first!</p>
 @endforelse
 
         </div>
 
         {{-- SIDEBAR --}}
         <div class="col-md-4">
-            <div class="card border p-3" style="font-size:13px; position:sticky; top:24px;">
+            <div class="card border p-3 small sticky-sidebar">
 
                 {{-- BEEN HERE / WANT TO GO --}}
                 <div class="d-flex gap-2 mb-3" id="place-status-buttons" data-place-slug="{{ $place->slug }}">
                     <button type="button"
                             id="been-here-btn"
-                            class="btn flex-fill text-center p-3"
-                            style="border:1px solid #dee2e6; border-radius:10px; background:white;">
-                        <i class="bi bi-flag-fill d-block mb-1" id="been-here-icon" style="font-size:20px; color:#9aa5b1;"></i>
-                        <div class="fw-500" id="been-here-count" style="font-size:16px; color:#0d2a3f;">{{ $place->been_here_count }}</div>
-                        <div class="text-muted text-uppercase" style="font-size:10px; letter-spacing:0.04em;">Been Here</div>
+                            class="btn flex-fill text-center p-3 status-btn">
+                        <i class="bi bi-flag-fill d-block mb-1 status-icon fs-5" id="been-here-icon"></i>
+                        <div class="fw-medium text-dark" id="been-here-count">{{ $place->been_here_count }}</div>
+                        <div class="text-muted text-uppercase fs-8 tracked">Been Here</div>
                     </button>
 
                     <button type="button"
                             id="want-to-go-btn"
-                            class="btn flex-fill text-center p-3"
-                            style="border:1px solid #dee2e6; border-radius:10px; background:white;">
-                        <i class="bi bi-star-fill d-block mb-1" id="want-to-go-icon" style="font-size:20px; color:#9aa5b1;"></i>
-                        <div class="fw-500" id="want-to-go-count" style="font-size:16px; color:#0d2a3f;">{{ $place->want_to_go_count }}</div>
-                        <div class="text-muted text-uppercase" style="font-size:10px; letter-spacing:0.04em;">Want to Go</div>
+                            class="btn flex-fill text-center p-3 status-btn">
+                        <i class="bi bi-star-fill d-block mb-1 status-icon fs-5" id="want-to-go-icon"></i>
+                        <div class="fw-medium text-dark" id="want-to-go-count">{{ $place->want_to_go_count }}</div>
+                        <div class="text-muted text-uppercase fs-8 tracked">Want to Go</div>
                     </button>
                 </div>
 
                 {{-- SHARE --}}
                 <div class="d-flex align-items-center gap-2 mb-3">
-                    <span class="text-muted text-uppercase" style="font-size:10px; letter-spacing:0.04em;">Share</span>
+                    <span class="text-muted text-uppercase fs-8 tracked">Share</span>
                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
                        target="_blank" rel="noopener"
-                       class="d-flex align-items-center justify-content-center"
-                       style="width:32px; height:32px; border-radius:50%; background:#eaf4fb; color:#2176ae;">
+                       class="d-flex align-items-center justify-content-center rounded-circle icon-btn bg-light text-primary">
                         <i class="bi bi-facebook"></i>
                     </a>
                     <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($place->title) }}"
                        target="_blank" rel="noopener"
-                       class="d-flex align-items-center justify-content-center"
-                       style="width:32px; height:32px; border-radius:50%; background:#eaf4fb; color:#2176ae;">
+                       class="d-flex align-items-center justify-content-center rounded-circle icon-btn bg-light text-primary">
                         <i class="bi bi-twitter-x"></i>
                     </a>
                     <button type="button" id="copy-link-btn"
-                            class="d-flex align-items-center justify-content-center border-0"
-                            style="width:32px; height:32px; border-radius:50%; background:#eaf4fb; color:#2176ae;">
+                            class="d-flex align-items-center justify-content-center rounded-circle icon-btn bg-light text-primary border-0">
                         <i class="bi bi-link-45deg"></i>
                     </button>
-                    <span id="copy-link-feedback" class="text-success" style="font-size:11px; display:none;">Copied!</span>
+                    <span id="copy-link-feedback" class="text-success fs-7 d-none">Copied!</span>
                 </div>
 
                 @if($place->latitude && $place->longitude)
                     <div class="mb-3">
                         @if($location && ($location['city'] || $location['region'] || $location['country']))
                             <div class="text-muted mb-1">Location</div>
-                            <div class="fw-500 mb-2">
+                            <div class="fw-medium mb-2">
                                 {{ implode(', ', array_filter([$location['city'], $location['region'], $location['country']])) }}
                             </div>
                         @endif
-                        <div id="place-map" style="height:160px; border-radius:8px; overflow:hidden; border:0.5px solid #dee2e6;" class="mb-2"></div>
+                        <div id="place-map" class="map-sm rounded-3 overflow-hidden border mb-2"></div>
                         <div class="text-muted mb-1">Coordinates</div>
-                        <div class="fw-500">{{ rtrim(rtrim($place->latitude, "0"), ".") }}, {{ rtrim(rtrim($place->longitude, "0"), ".") }}</div>
+                        <div class="fw-medium">{{ rtrim(rtrim($place->latitude, "0"), ".") }}, {{ rtrim(rtrim($place->longitude, "0"), ".") }}</div>
                     </div>
                 @endif
 
@@ -374,22 +363,21 @@
                     @foreach($nearbyPlaces as $similar)
                         <a href="{{ route('places.show', $similar->slug) }}"
                            class="text-decoration-none d-flex align-items-center gap-2 mb-2">
-                            <div style="width:40px; height:40px; border-radius:6px; overflow:hidden; background:#dde8f0; flex-shrink:0;">
+                            <div class="thumb-xs rounded-2 overflow-hidden bg-placeholder flex-shrink-0">
                                 @if($similar->image)
                                     <img src="{{ asset('storage/'.$similar->image) }}"
                                          alt="{{ $similar->title }}"
-                                         style="width:100%; height:100%; object-fit:cover; display:block;">
+                                         class="w-100 h-100 object-fit-cover d-block">
                                 @endif
                             </div>
-                            <span style="color:#0d2a3f; font-size:13px;">{{ $similar->title }}</span>
+                            <span class="text-dark">{{ $similar->title }}</span>
                         </a>
                     @endforeach
                 @endif
 
                 <hr class="my-3">
                 <a href="{{ route('countries.show', $country) }}"
-                   class="text-decoration-none"
-                   style="color:#2176ae; font-size:13px;">
+                   class="text-decoration-none text-primary">
                     ← Back to {{ $country->name }}
                 </a>
             </div>
@@ -439,8 +427,8 @@ document.addEventListener('DOMContentLoaded', function() {
         copyBtn.addEventListener('click', function() {
             navigator.clipboard.writeText(window.location.href).then(function() {
                 const feedback = document.getElementById('copy-link-feedback');
-                feedback.style.display = 'inline';
-                setTimeout(() => feedback.style.display = 'none', 2000);
+                feedback.classList.remove('d-none');
+                setTimeout(() => feedback.classList.add('d-none'), 2000);
             });
         });
     }
@@ -460,18 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function applyState(type, active) {
-            const el = types[type];
-            const icon = document.getElementById(el.icon);
-            const btn = document.getElementById(el.btn);
-            if (active) {
-                icon.style.color = '#2176ae';
-                btn.style.borderColor = '#2176ae';
-                btn.style.background = '#eaf4fb';
-            } else {
-                icon.style.color = '#9aa5b1';
-                btn.style.borderColor = '#dee2e6';
-                btn.style.background = 'white';
-            }
+            document.getElementById(types[type].btn).classList.toggle('is-active', active);
         }
 
         Object.keys(types).forEach(type => {
@@ -510,9 +487,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('reply-form-' + id);
             const bodyField = form.querySelector('.reply-body');
 
-            document.querySelectorAll('.reply-form').forEach(f => f.style.display = 'none');
+            document.querySelectorAll('.reply-form').forEach(f => f.classList.add('d-none'));
 
-            form.style.display = 'block';
+            form.classList.remove('d-none');
 
             if (name) {
                 bodyField.value = '@' + name + ' ';
@@ -526,7 +503,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('.cancel-reply').forEach(btn => {
         btn.addEventListener('click', () => {
-            document.getElementById('reply-form-' + btn.dataset.id).style.display = 'none';
+            document.getElementById('reply-form-' + btn.dataset.id).classList.add('d-none');
         });
     });
 
@@ -562,14 +539,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if (data.success) {
                 successBox.textContent = data.message;
-                successBox.style.display = 'block';
+                successBox.classList.remove('d-none');
                 document.getElementById('comment-name').value = '';
                 document.getElementById('comment-body').value = '';
             }
         })
         .catch(() => {
             successBox.textContent = 'Something went wrong. Please try again.';
-            successBox.style.display = 'block';
+            successBox.classList.remove('d-none');
         })
         .finally(() => {
             btn.disabled = false;
@@ -608,14 +585,14 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 if (data.success) {
                     successBox.textContent = data.message;
-                    successBox.style.display = 'block';
+                    successBox.classList.remove('d-none');
                     container.querySelector('.reply-name').value = '';
                     container.querySelector('.reply-body').value = '';
                 }
             })
             .catch(() => {
                 successBox.textContent = 'Something went wrong.';
-                successBox.style.display = 'block';
+                successBox.classList.remove('d-none');
             })
             .finally(() => {
                 btn.disabled = false;

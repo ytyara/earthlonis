@@ -65,15 +65,14 @@
             {{-- ISO CODE --}}
             <div class="mb-3">
                 <label class="form-label">ISO Code
-                    <span class="text-muted" style="font-size:12px;">(2 chars, e.g. UA, ID, FR)</span>
+                    <span class="text-muted fs-7">(2 chars, e.g. UA, ID, FR)</span>
                 </label>
                 <input type="text"
                     name="iso_code"
                     value="{{ old('iso_code', $country->iso_code) }}"
-                    class="form-control @error('iso_code') is-invalid @enderror"
+                    class="form-control @error('iso_code') is-invalid @enderror mw-iso text-uppercase"
                     placeholder="UA"
-                    maxlength="2"
-                    style="max-width:100px; text-transform:uppercase;">
+                    maxlength="2">
                 @error('iso_code')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

@@ -1,5 +1,5 @@
 @php($size = $size ?? 32)
-<svg width="{{ $size }}" height="{{ $size }}" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;">
+<svg width="{{ $size }}" height="{{ $size }}" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="flex-shrink-0">
     <circle cx="16" cy="21" r="14" stroke="#2176ae" stroke-width="2"/>
     <ellipse cx="16" cy="21" rx="5.5" ry="14" stroke="#2176ae" stroke-width="1.6"/>
     <line x1="2" y1="21" x2="30" y2="21" stroke="#2176ae" stroke-width="1.6"/>

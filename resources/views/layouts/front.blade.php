@@ -25,6 +25,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
     <style>
         /* Keep every GLightbox slide the same size so photos don't jump around when navigating */
         .glightbox-clean .gslide-media {
@@ -48,14 +49,14 @@
     </style>
 </head>
 
-<body class="d-flex flex-column min-vh-100" style="background:#f4f8fb;">
+<body class="d-flex flex-column min-vh-100 bg-page">
 
     {{-- HEADER --}}
     <header class="bg-white border-bottom">
         <div class="container py-3 d-flex justify-content-between align-items-center">
-            <a href="{{ url('/') }}" class="text-decoration-none px-2 d-inline-flex align-items-center gap-2" style="font-family: system-ui, sans-serif; font-size: 22px; font-weight: 700;">
+            <a href="{{ url('/') }}" class="text-decoration-none px-2 d-inline-flex align-items-center gap-2 fs-4 fw-bold">
                 @include('partials.logo-icon', ['size' => 30])
-                <span><span style="color:#2176ae;">Earth</span><span style="color:#1a4a6e;">lonis</span></span>
+                <span><span class="text-primary">Earth</span><span class="text-brand-deep">lonis</span></span>
             </a>
         </div>
     </header>
@@ -66,7 +67,7 @@
     </main>
 
     {{-- FOOTER --}}
-    <footer class="bg-white border-top mt-5 py-4">
+    <footer class="bg-white border-top py-4">
         <div class="container text-center text-muted small">
             © {{ date('Y') }} Earthlonis — discover the world, one place at a time
         </div>

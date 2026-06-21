@@ -6,6 +6,7 @@
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
 </head>
 
 <body class="bg-light">
@@ -13,13 +14,13 @@
 <div class="d-flex">
 
     <!-- SIDEBAR -->
-    <div class="bg-dark p-3 d-flex flex-column" style="width: 230px; min-height: 100vh;">
+    <div class="bg-dark p-3 d-flex flex-column sidebar-width min-vh-100">
 
         <div class="d-flex align-items-center gap-2 mb-1">
             @include('partials.logo-icon', ['size' => 26])
-            <span class="text-white fw-bold" style="font-size:17px;">Earthlonis</span>
+            <span class="text-white fw-bold fs-6">Earthlonis</span>
         </div>
-        <div class="text-secondary mb-4" style="font-size:11px; text-transform:uppercase; letter-spacing:0.06em;">Admin Panel</div>
+        <div class="text-secondary mb-4 fs-7 text-uppercase tracked">Admin Panel</div>
 
         <ul class="nav flex-column">
 

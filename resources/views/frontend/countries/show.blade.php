@@ -36,7 +36,7 @@
 @section('content')
 
 {{-- HERO --}}
-<section style="background:#eaf4fb; padding:48px 0;">
+<section class="bg-light py-5">
     <div class="container">
         <div class="row align-items-center g-4">
 
@@ -44,18 +44,16 @@
                 @if($country->image)
                     <img src="{{ asset('storage/'.$country->image) }}"
                          alt="{{ $country->name }}"
-                         class="rounded"
-                         style="width:100%; height:260px; object-fit:cover; object-position:top;">
+                         class="rounded thumb-hero w-100 object-fit-cover object-top">
                 @endif
             </div>
 
             <div class="col-md-6">
-                <a href="{{ url('/') }}" class="text-decoration-none small mb-3 d-inline-block"
-                   style="color:#2176ae;">← All countries</a>
-                <h1 class="mb-2" style="font-size:32px; font-weight:500; color:#0d2a3f;">
+                <a href="{{ url('/') }}" class="text-decoration-none small mb-3 d-inline-block text-primary">← All countries</a>
+                <h1 class="mb-2 fs-1 fw-medium text-dark">
                     {{ $country->name }}
                 </h1>
-                <p style="font-size:14px; color:#4a6a80;">
+                <p class="small text-secondary">
                     {{ $country->places->count() }} {{ Str::plural('place', $country->places->count()) }}
                 </p>
             </div>
@@ -68,56 +66,42 @@
 <section class="py-5">
     <div class="container">
 
-        <h2 class="mb-4" style="font-size:19px; font-weight:500;">Places in {{ $country->name }}</h2>
+        <h2 class="mb-4 fs-5 fw-medium">Places in {{ $country->name }}</h2>
 
         {{-- CATEGORY FILTER --}}
-        <div class="d-flex flex-wrap gap-2 mb-4">
-            <a href="{{ route('countries.show', $country) }}"
-               class="text-decoration-none px-3 py-2 rounded-pill border small"
-               style="background: {{ !$category ? '#2176ae' : 'white' }}; color: {{ !$category ? 'white' : 'var(--bs-body-color)' }}; border-color: {{ !$category ? '#2176ae' : '' }};">
-                All
-            </a>
-            @foreach($categories as $cat)
-                <a href="{{ route('countries.category', [$country, $cat->slug]) }}"
-                   class="text-decoration-none px-3 py-2 rounded-pill border small"
-                   style="background: {{ $category?->slug === $cat->slug ? '#2176ae' : 'white' }}; color: {{ $category?->slug === $cat->slug ? 'white' : 'var(--bs-body-color)' }}; border-color: {{ $category?->slug === $cat->slug ? '#2176ae' : '' }}; transition: background 0.15s;"
-                   onmouseover="if(this.style.background !== 'rgb(33, 118, 174)') this.style.background='#eaf4fb';"
-                   onmouseout="if(this.style.background !== 'rgb(33, 118, 174)') this.style.background='white';">
-                    {{ $cat->name }}
-                </a>
-            @endforeach
-        </div>
+        @include('frontend.partials.category-filter', [
+            'allUrl' => route('countries.show', $country),
+            'categories' => $categories,
+            'categoryUrl' => fn($cat) => route('countries.category', [$country, $cat->slug]),
+            'activeCategory' => $category,
+        ])
 
         <div class="row g-3">
 
             @foreach($country->places as $place)
                 <div class="col-12 col-md-4">
                     <a href="{{ route('places.show', $place) }}" class="text-decoration-none">
-                        <div class="card border h-100"
-                             style="transition: transform 0.15s, border-color 0.15s;"
-                             onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#aac4d8';"
-                             onmouseout="this.style.transform=''; this.style.borderColor='';">
+                        <div class="card border h-100 hover-lift">
 
-                            <div style="height:180px; overflow:hidden; background:#dde8f0; position:relative;">
+                            <div class="thumb-lg overflow-hidden bg-placeholder position-relative">
                                 @if($place->image)
                                     <img src="{{ asset('storage/'.$place->image) }}"
                                          alt="{{ $place->title }}"
-                                         style="width:100%; height:100%; object-fit:cover; display:block;">
+                                         class="w-100 h-100 object-fit-cover d-block">
                                 @endif
 
                                 @if($place->category)
-                                    <span class="position-absolute top-0 start-0 m-2 badge"
-                                          style="background:rgba(255,255,255,0.92); color:#0d2a3f; font-size:11px; font-weight:500;">
+                                    <span class="position-absolute top-0 start-0 m-2 badge bg-white bg-opacity-75 text-dark fw-medium fs-8">
                                         {{ $place->category->name }}
                                     </span>
                                 @endif
                             </div>
 
                             <div class="card-body py-3 px-3">
-                                <div class="fw-500 text-dark mb-1" style="font-size:14px;">
+                                <div class="fw-medium text-dark mb-1 small">
                                     {{ $place->title }}
                                 </div>
-                                <div class="text-muted" style="font-size:12px;">
+                                <div class="text-muted fs-7">
                                     {{ Str::limit(strip_tags($place->description), 80) }}
                                 </div>
                             </div>
@@ -142,7 +126,7 @@
 @if($country->iso_code)
 <section class="pb-5">
     <div class="container">
-        <div id="country-map" style="height:300px; border-radius:12px; overflow:hidden; border:0.5px solid #dee2e6;"></div>
+        <div id="country-map" class="map-md rounded-4 overflow-hidden border"></div>
     </div>
 </section>
 @endif

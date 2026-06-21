@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="mb-3 small" style="color:#4a6a80;">
+    <div class="mb-3 small text-secondary">
         {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
     </div>
 
@@ -19,7 +19,7 @@
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="btn btn-link text-decoration-none small p-0" style="color:#4a6a80;">
+            <button type="submit" class="btn btn-link text-decoration-none small p-0 text-secondary">
                 {{ __('Log Out') }}
             </button>
         </form>

@@ -29,11 +29,11 @@
                     <td class="fw-semibold">{{ $comment->name }}</td>
 
                     <td>
-                        <div style="max-width:300px; font-size:13px;">
+                        <div class="mw-comment small">
                             {{ Str::limit($comment->body, 80) }}
                         </div>
                         @if($comment->parent_id)
-                            <span class="badge bg-light text-muted border" style="font-size:11px;">
+                            <span class="badge bg-light text-muted border fs-8">
                                 ↩ Reply
                             </span>
                         @endif
@@ -42,8 +42,7 @@
                     <td>
                         <a href="{{ route('places.show', $comment->place->slug) }}"
                            target="_blank"
-                           class="text-decoration-none small"
-                           style="color:#2176ae;">
+                           class="text-decoration-none small text-primary">
                             {{ $comment->place->title }}
                         </a>
                     </td>
@@ -68,7 +67,7 @@
                                     class="d-inline">
                                     @csrf
                                     @method('PATCH')
-                                    <button class="btn btn-sm btn-outline-success" style="width:100px;">Approve</button>
+                                    <button class="btn btn-sm btn-outline-success w-btn-wide">Approve</button>
                                 </form>
                             @else
                                 <form action="{{ route('backend.comments.disapprove', $comment) }}"
@@ -76,7 +75,7 @@
                                     class="d-inline">
                                     @csrf
                                     @method('PATCH')
-                                    <button class="btn btn-sm btn-outline-warning" style="width:100px;">Disapprove</button>
+                                    <button class="btn btn-sm btn-outline-warning w-btn-wide">Disapprove</button>
                                 </form>
                             @endif
 

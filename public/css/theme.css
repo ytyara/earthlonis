@@ -1,0 +1,350 @@
+/*
+ * Earthlonis brand theme — retints Bootstrap 5's own CSS variables and the
+ * handful of components Bootstrap hardcodes at build time (buttons, form
+ * focus states, pagination). Views should use Bootstrap utility classes
+ * (text-primary, bg-light, fs-*, fw-*, etc.) — this file is what makes those
+ * classes resolve to brand colors instead of Bootstrap's defaults, so no
+ * view should need raw hex colors in a style attribute.
+ */
+
+:root {
+    --bs-primary: #2176ae;
+    --bs-primary-rgb: 33, 118, 174;
+    --bs-secondary: #4a6a80;
+    --bs-secondary-rgb: 74, 106, 128;
+    --bs-dark: #0d2a3f;
+    --bs-dark-rgb: 13, 42, 63;
+    --bs-light: #eaf4fb;
+    --bs-light-rgb: 234, 244, 251;
+    --bs-body-color: #1f2937;
+    --bs-body-color-rgb: 31, 41, 55;
+    --bs-link-color: #2176ae;
+    --bs-link-color-rgb: 33, 118, 174;
+    --bs-link-hover-color: #1a4a6e;
+    --bs-link-hover-color-rgb: 26, 74, 110;
+    --bs-pagination-active-bg: #2176ae;
+    --bs-pagination-active-border-color: #2176ae;
+
+    /* "subtle" tokens (badges, alerts) are separate hardcoded tokens in
+       Bootstrap, not derived from --bs-primary at runtime. */
+    --bs-primary-bg-subtle: #eaf4fb;
+    --bs-primary-border-subtle: #b8d4e8;
+    --bs-primary-text-emphasis: #1a4a6e;
+
+    /* extra steps Bootstrap doesn't ship, named in its own convention */
+    --brand-blue-deep: #1a4a6e;
+    --brand-blue-soft: #b8d4e8;
+    --brand-blue-soft-hover: #aac4d8;
+    --brand-placeholder-bg: #dde8f0;
+    --brand-muted-soft: #9aa5b1;
+    --brand-page-bg: #f4f8fb;
+    --brand-divider: #f0f4f8;
+}
+
+/* Bootstrap bakes button/focus colors into hex values at build time rather
+   than referencing --bs-primary, so they need an explicit retint. */
+.btn-primary {
+    --bs-btn-bg: #2176ae;
+    --bs-btn-border-color: #2176ae;
+    --bs-btn-hover-bg: var(--brand-blue-deep);
+    --bs-btn-hover-border-color: var(--brand-blue-deep);
+    --bs-btn-active-bg: var(--brand-blue-deep);
+    --bs-btn-active-border-color: var(--brand-blue-deep);
+    --bs-btn-disabled-bg: #2176ae;
+    --bs-btn-disabled-border-color: #2176ae;
+    --bs-btn-focus-shadow-rgb: 33, 118, 174;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: #2176ae;
+    --bs-btn-border-color: #2176ae;
+    --bs-btn-hover-bg: #2176ae;
+    --bs-btn-hover-border-color: #2176ae;
+    --bs-btn-active-bg: #2176ae;
+    --bs-btn-active-border-color: #2176ae;
+    --bs-btn-disabled-color: #2176ae;
+    --bs-btn-disabled-border-color: #2176ae;
+    --bs-btn-focus-shadow-rgb: 33, 118, 174;
+}
+
+.btn-secondary {
+    --bs-btn-bg: #4a6a80;
+    --bs-btn-border-color: #4a6a80;
+    --bs-btn-hover-bg: var(--brand-blue-deep);
+    --bs-btn-hover-border-color: var(--brand-blue-deep);
+    --bs-btn-active-bg: var(--brand-blue-deep);
+    --bs-btn-active-border-color: var(--brand-blue-deep);
+    --bs-btn-disabled-bg: #4a6a80;
+    --bs-btn-disabled-border-color: #4a6a80;
+}
+
+.btn-outline-secondary {
+    --bs-btn-color: #4a6a80;
+    --bs-btn-border-color: #4a6a80;
+    --bs-btn-hover-bg: #4a6a80;
+    --bs-btn-hover-border-color: #4a6a80;
+    --bs-btn-active-bg: #4a6a80;
+    --bs-btn-active-border-color: #4a6a80;
+    --bs-btn-disabled-color: #4a6a80;
+    --bs-btn-disabled-border-color: #4a6a80;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--brand-blue-soft-hover);
+    box-shadow: 0 0 0 .25rem rgba(33, 118, 174, .25);
+}
+
+.form-check-input:checked {
+    background-color: #2176ae;
+    border-color: #2176ae;
+}
+
+.form-check-input:focus {
+    border-color: var(--brand-blue-soft-hover);
+    box-shadow: 0 0 0 .25rem rgba(33, 118, 174, .25);
+}
+
+/* Page background — a half-shade off bg-light, used on <body> only. */
+.bg-page {
+    background-color: var(--brand-page-bg);
+}
+
+/* Image placeholder tiles (empty country/place thumbnails). */
+.bg-placeholder {
+    background-color: var(--brand-placeholder-bg);
+}
+
+/* Inactive icon / timestamp tone, one step lighter than text-secondary. */
+.text-muted-soft {
+    color: var(--brand-muted-soft) !important;
+}
+
+.border-brand-soft {
+    border-color: var(--brand-blue-soft) !important;
+}
+
+.text-brand-deep {
+    color: var(--brand-blue-deep) !important;
+}
+
+.border-faint {
+    border-color: var(--brand-divider) !important;
+}
+
+/* Card/pill hover lift used across listing grids, replacing inline
+   onmouseover/onmouseout handlers. */
+.hover-lift {
+    transition: transform .15s ease, border-color .15s ease, background-color .15s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    border-color: var(--brand-blue-soft-hover) !important;
+}
+
+.hover-pill:not(.is-active):hover {
+    background-color: #eaf4fb !important;
+    border-color: var(--brand-blue-soft) !important;
+}
+
+/* One step smaller than Bootstrap's fs-6 (1rem), for uppercase eyebrow
+   labels — named in Bootstrap's own fs-* convention. */
+.fs-7 {
+    font-size: .75rem !important;
+}
+
+.fs-8 {
+    font-size: .6875rem !important;
+}
+
+/* Fixed-width wrapper for the auth card on the guest layout. */
+.mw-auth {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* Comfortable reading width for centered body copy. */
+.mw-prose {
+    max-width: 640px;
+}
+
+/* Search bar width on the homepage hero. */
+.mw-search {
+    width: 100%;
+    max-width: 540px;
+}
+
+/* Letter-spacing for small uppercase eyebrow labels (stat labels, badges,
+   section captions) — Bootstrap has no utility for this. */
+.tracked {
+    letter-spacing: 0.06em;
+}
+
+.tracked-wide {
+    letter-spacing: 0.08em;
+}
+
+/* Fixed-width admin sidebar. */
+.sidebar-width {
+    width: 230px;
+}
+
+/* Fixed-height thumbnail crops for card grids. */
+.thumb-sm {
+    height: 100px;
+}
+
+.thumb-md {
+    height: 140px;
+}
+
+.thumb-lg {
+    height: 180px;
+}
+
+.thumb-xl {
+    height: 320px;
+}
+
+.thumb-hero {
+    height: 260px;
+}
+
+.object-top {
+    object-position: top;
+}
+
+/* Admin media previews. */
+.mw-thumb-preview {
+    max-width: 200px;
+}
+
+.img-h-150 {
+    height: 150px;
+}
+
+/* Admin table thumbnail placeholder. */
+.thumb-table {
+    width: 70px;
+    height: 50px;
+}
+
+/* Fixed-width publish/unpublish buttons so the row action group doesn't jiggle. */
+.w-btn-fixed {
+    width: 90px;
+}
+
+.w-btn-wide {
+    width: 100px;
+}
+
+.mw-comment {
+    max-width: 300px;
+}
+
+.mw-iso {
+    max-width: 100px;
+}
+
+.mw-profile {
+    max-width: 700px;
+}
+
+/* Google's own SERP colors, deliberately not brand colors — used only by
+   the admin SEO-preview widget to mimic an actual search result. */
+.text-serp-title {
+    color: #1a0dab;
+}
+
+.text-serp-url {
+    color: #006621;
+}
+
+.text-serp-desc {
+    color: #545454;
+}
+
+/* One step past Bootstrap's spacing scale (which tops out at 5 = 3rem),
+   named in its own convention, for the hero section's extra-generous padding. */
+.py-6 {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+}
+
+.gap-6 {
+    gap: 5rem !important;
+}
+
+/* "Been here / Want to go" status buttons — JS toggles .is-active instead
+   of mutating inline styles directly. */
+.status-btn {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.status-btn .status-icon {
+    color: var(--brand-muted-soft);
+}
+
+.status-btn.is-active {
+    border-color: #2176ae;
+    background: #eaf4fb;
+}
+
+.status-btn.is-active .status-icon {
+    color: #2176ae;
+}
+
+/* Round icon-only buttons (share links, copy-link). */
+.icon-btn {
+    width: 32px;
+    height: 32px;
+}
+
+/* Comment author avatars. */
+.avatar-sm {
+    width: 32px;
+    height: 32px;
+}
+
+.avatar-md {
+    width: 38px;
+    height: 38px;
+}
+
+/* Small square thumbnail (similar-places list, etc). */
+.thumb-xs {
+    width: 40px;
+    height: 40px;
+}
+
+/* Inline dot separator between meta items. */
+.dot-sep {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #ccc;
+    display: inline-block;
+}
+
+/* Label column width in label/value rows (Know Before You Go, etc). */
+.mw-label {
+    min-width: 140px;
+}
+
+/* Sidebar card that sticks a little below the page header on scroll. */
+.sticky-sidebar {
+    position: sticky;
+    top: 1.5rem;
+}
+
+/* Embedded map heights. */
+.map-sm {
+    height: 160px;
+}
+
+.map-md {
+    height: 300px;
+}

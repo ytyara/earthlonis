@@ -3,7 +3,7 @@
         <h2 class="h5 mb-0">{{ __('Profile') }}</h2>
     </x-slot>
 
-    <div class="row g-4" style="max-width:700px;">
+    <div class="row g-4 mw-profile">
         <div class="col-12">
             <div class="card border p-4">
                 @include('profile.partials.update-profile-information-form')

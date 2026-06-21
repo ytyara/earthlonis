@@ -101,7 +101,7 @@
             {{-- TAGLINE --}}
             <div class="mb-3">
                 <label class="form-label">Tagline
-                    <span class="text-muted" style="font-size:12px;">(short one-line hook shown under the title, e.g. "The highest peak in Ukraine")</span>
+                    <span class="text-muted fs-7">(short one-line hook shown under the title, e.g. "The highest peak in Ukraine")</span>
                 </label>
                 <input type="text"
                        name="tagline"
@@ -115,7 +115,7 @@
             {{-- KNOW BEFORE YOU GO --}}
             <div class="mb-3">
                 <label class="form-label">Know Before You Go
-                    <span class="text-muted" style="font-size:12px;">(practical tips, e.g. "How to get there" / "Take the cable car from..." )</span>
+                    <span class="text-muted fs-7">(practical tips, e.g. "How to get there" / "Take the cable car from..." )</span>
                 </label>
 
                 <div id="kbyg-rows">
@@ -146,7 +146,7 @@
             {{-- QUICK FACTS --}}
             <div class="mb-3">
                 <label class="form-label">Quick Facts
-                    <span class="text-muted" style="font-size:12px;">(shown as a table under the gallery, e.g. "Height" / "2061 m")</span>
+                    <span class="text-muted fs-7">(shown as a table under the gallery, e.g. "Height" / "2061 m")</span>
                 </label>
 
                 <div id="quick-facts-rows">
@@ -185,7 +185,7 @@
             {{-- SOURCES --}}
             <div class="mb-3">
                 <label class="form-label">Sources
-                    <span class="text-muted" style="font-size:12px;">(links to where this information was sourced from)</span>
+                    <span class="text-muted fs-7">(links to where this information was sourced from)</span>
                 </label>
 
                 <div id="source-rows">

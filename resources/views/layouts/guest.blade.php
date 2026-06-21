@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
 </head>
-<body class="d-flex align-items-center justify-content-center min-vh-100 py-5" style="background:#eaf4fb;">
+<body class="d-flex align-items-center justify-content-center min-vh-100 py-5 bg-light">
 
-    <div style="width:100%; max-width:420px;">
+    <div class="mw-auth">
 
         <div class="text-center mb-4">
-            <a href="{{ url('/') }}" class="text-decoration-none d-inline-flex align-items-center gap-2" style="font-family: system-ui, sans-serif; font-size: 26px; font-weight: 700;">
+            <a href="{{ url('/') }}" class="text-decoration-none d-inline-flex align-items-center gap-2 fs-3 fw-bold">
                 @include('partials.logo-icon', ['size' => 34])
-                <span><span style="color:#2176ae;">Earth</span><span style="color:#1a4a6e;">lonis</span></span>
+                <span><span class="text-primary">Earth</span><span class="text-brand-deep">lonis</span></span>
             </a>
         </div>
 

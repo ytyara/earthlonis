@@ -51,13 +51,9 @@
                         <td>
                             @if($place->image)
                                 <img src="{{ asset('storage/'.$place->image) }}"
-                                    class="rounded"
-                                    width="70"
-                                    height="50"
-                                    style="object-fit: cover;">
+                                    class="rounded object-fit-cover thumb-table">
                             @else
-                                <div class="rounded bg-light d-flex align-items-center justify-content-center"
-                                    style="width:70px; height:50px;">
+                                <div class="rounded bg-light d-flex align-items-center justify-content-center thumb-table">
                                     <span class="text-muted small">No img</span>
                                 </div>
                             @endif
@@ -117,9 +113,9 @@
                                     @csrf
                                     @method('PATCH')
                                     @if($place->is_published)
-                                        <button class="btn btn-sm btn-outline-warning" style="width:90px;">Unpublish</button>
+                                        <button class="btn btn-sm btn-outline-warning w-btn-fixed">Unpublish</button>
                                     @else
-                                        <button class="btn btn-sm btn-outline-success" style="width:90px;">Publish</button>
+                                        <button class="btn btn-sm btn-outline-success w-btn-fixed">Publish</button>
                                     @endif
                                 </form>
 
